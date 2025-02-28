@@ -17,7 +17,7 @@ import DateTimeInput from "./date-time-input";
 
 import { AtSignIcon } from "lucide-react";
 
-import { tweet_themes, useTweetStore } from "@/store/tweet";
+import { tweet_devices, tweet_themes, useTweetStore } from "@/store/tweet";
 
 export default function Editor() {
   return (
@@ -131,28 +131,49 @@ function Metrics() {
 }
 
 function Appearance() {
-  // TODO: add bg color, device
-  const { apperance, update } = useTweetStore();
+  const { apperance, update, device } = useTweetStore();
   return (
-    <div className="flex flex-col gap-1.5">
-      <Label htmlFor="appearance">Appearance</Label>
-      <Select
-        value={apperance}
-        onValueChange={(val) =>
-          update({ apperance: val as (typeof tweet_themes)[number] })
-        }
-      >
-        <SelectTrigger>
-          <SelectValue id="appearance" placeholder="Theme" />
-        </SelectTrigger>
-        <SelectContent>
-          {tweet_themes.map((it) => (
-            <SelectItem key={it} value={it}>
-              {it}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+    <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="appearance">Appearance</Label>
+        <Select
+          value={apperance}
+          onValueChange={(val) =>
+            update({ apperance: val as (typeof tweet_themes)[number] })
+          }
+        >
+          <SelectTrigger>
+            <SelectValue id="appearance" placeholder="Theme" />
+          </SelectTrigger>
+          <SelectContent>
+            {tweet_themes.map((it) => (
+              <SelectItem key={it} value={it}>
+                {it}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="device">Device</Label>
+        <Select
+          value={device}
+          onValueChange={(val) =>
+            update({ device: val as (typeof tweet_devices)[number] })
+          }
+        >
+          <SelectTrigger>
+            <SelectValue id="device" placeholder="Theme" />
+          </SelectTrigger>
+          <SelectContent>
+            {tweet_devices.map((it) => (
+              <SelectItem key={it} value={it}>
+                {it}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }

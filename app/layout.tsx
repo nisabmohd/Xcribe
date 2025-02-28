@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Space_Mono } from "next/font/google";
-import "./globals.css";
+import { Space_Grotesk } from "next/font/google";
 import Nav from "@/components/nav";
+import "./globals.css";
 
-const poppins = Space_Mono({
+const poppins = Space_Grotesk({
   variable: "--font-main",
   subsets: ["latin"],
   weight: "400",
