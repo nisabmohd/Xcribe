@@ -12,12 +12,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import NumberInput from "./number-input";
+import DateTimeInput from "./date-time-input";
 
 import { AtSignIcon } from "lucide-react";
 
 import { tweet_themes, useTweetStore } from "@/store/tweet";
-import NumberInput from "./number-input";
-import DateTimeInput from "./date-time-input";
 
 export default function Editor() {
   return (
@@ -69,6 +69,7 @@ function Content() {
 }
 
 function Profile() {
+  // TODO: avatar
   const { update, verified, name, username } = useTweetStore();
   return (
     <div className="flex flex-col gap-5">
@@ -130,6 +131,7 @@ function Metrics() {
 }
 
 function Appearance() {
+  // TODO: add bg color, device
   const { apperance, update } = useTweetStore();
   return (
     <div className="flex flex-col gap-1.5">
