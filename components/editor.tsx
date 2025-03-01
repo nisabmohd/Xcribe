@@ -85,10 +85,7 @@ function Profile() {
             const file = e.target.files?.[0];
             if (file) {
               update({
-                avatar: {
-                  url: URL.createObjectURL(file),
-                  value: e.target.value,
-                },
+                avatar: URL.createObjectURL(file),
               });
             }
           }}

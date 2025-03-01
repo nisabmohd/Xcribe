@@ -28,6 +28,7 @@ export default function Tweet() {
     avatar,
     date,
     apperance,
+    font,
   } = useTweetStore();
 
   const formattedDateTime = useMemo(
@@ -41,18 +42,19 @@ export default function Tweet() {
       <div
         id="tweet-ui"
         className={cn(
-          // TODO: font
           "w-full flex items-start gap-3 min-h-fit rounded-lg p-3.5 border overflow-x-auto bg-neutral-950/50",
           apperance == "Dark" && "bg-neutral-950/50",
           apperance == "Dim" && "bg-[#15202B] border-neutral-700/70",
           apperance == "Light" &&
-            "bg-neutral-100 border-neutral-300 text-neutral-700"
+            "bg-neutral-100 border-neutral-300 text-neutral-700",
+          font === "Inter" && "font-inter",
+          font === "Poppins" && "font-poppins"
         )}
       >
         <div className="flex flex-col gap-3 w-full">
           <div className="flex items-center gap-2">
             <Avatar className="w-10 h-10">
-              <AvatarImage src={avatar?.url} alt={name} />
+              <AvatarImage src={avatar} alt={name} />
               <AvatarFallback>{name.slice(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
@@ -88,7 +90,7 @@ export default function Tweet() {
             </div>
             <div
               className={cn(
-                "border-t flex items-center gap-5 text-sm pt-3 px-1 text-muted-foreground",
+                "border-t flex items-center gap-5 pt-3 px-1 text-muted-foreground text-xs lg:text-base",
                 apperance == "Dim" && "border-neutral-700",
                 apperance == "Light" && "border-neutral-300 text-neutral-500"
               )}
@@ -106,19 +108,19 @@ export default function Tweet() {
                 >
                   {formatNumber(comments)}
                 </span>{" "}
-                Comments
+                <span className="max-[440px]:hidden">Comments</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="items-center gap-1.5 flex">
                 <Repeat2Icon size={16} className="text-green-500" />
                 <span
                   className={cn(
-                    "text-primary",
+                    "text-primary ",
                     apperance == "Light" && "text-neutral-600"
                   )}
                 >
                   {formatNumber(retweets)}
                 </span>{" "}
-                Retweets
+                <span className="max-[440px]:hidden">Retweets</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <HeartIcon size={14} className="fill-current text-red-600" />
@@ -130,7 +132,7 @@ export default function Tweet() {
                 >
                   {formatNumber(likes)}
                 </span>{" "}
-                Likes
+                <span className="max-[440px]:hidden">Likes</span>
               </div>
             </div>
           </div>

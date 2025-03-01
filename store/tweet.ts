@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 export const tweet_themes = ["Dark", "Light", "Dim"] as const;
 export const tweet_devices = ["iPhone", "Android", "Web", "Windows"] as const;
-export const tweet_font = ["Inter", "Roboto", "Poppins", "Grotesk"] as const;
+export const tweet_font = ["Inter", "Poppins", "Grotesk"] as const;
 
 type TweetState = {
     text: string;
@@ -16,7 +16,7 @@ type TweetState = {
     comments: number;
     retweets: number;
     device: typeof tweet_devices[number];
-    avatar: { url: string; value: string } | null;
+    avatar: string | undefined;
     font: typeof tweet_font[number];
 };
 
@@ -36,7 +36,7 @@ export const useTweetStore = create<TweetState & TweetUpdateAction>((set) => ({
         "Do you know about ReturnType in TypeScript? What about Awaited or Parameters? ",
     verified: false,
     device: "Android",
-    font: "Poppins",
-    avatar: null,
+    font: "Grotesk",
+    avatar: undefined,
     update: (data) => set((prev) => ({ ...prev, ...data })),
 }));

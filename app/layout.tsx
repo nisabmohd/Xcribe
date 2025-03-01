@@ -1,10 +1,22 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Poppins, Space_Grotesk, Inter } from "next/font/google";
 import Nav from "@/components/nav";
 import "./globals.css";
 
-const fontMain = Space_Grotesk({
-  variable: "--font-main",
+const fontGrotesk = Space_Grotesk({
+  variable: "--font-grotesk",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const fontInter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const fontPoppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
   weight: "400",
 });
@@ -21,7 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${fontMain.className} font-sans antialiased`}>
+      <body
+        className={`${fontGrotesk.variable} ${fontPoppins.variable} ${fontInter.variable} font-grotesk antialiased`}
+      >
         <Nav />
         <main>{children}</main>
       </body>
