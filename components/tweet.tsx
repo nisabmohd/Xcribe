@@ -43,11 +43,12 @@ export default function Tweet() {
       <div
         id="tweet-ui"
         className={cn(
-          "w-full flex items-start gap-3 min-h-fit rounded-lg p-3.5 border overflow-x-auto bg-neutral-950/50",
-          apperance == "Dark" && "bg-neutral-950/50",
-          apperance == "Dim" && "bg-[#15202B] border-neutral-700/70",
+          "w-full flex items-start gap-3 min-h-fit rounded-lg p-3.5 border overflow-x-auto",
+          apperance == "Dark" && "bg-black text-neutral-100 border-neutral-700",
+          apperance == "Dim" &&
+            "bg-[#15202B] border-neutral-700/70 text-neutral-200",
           apperance == "Light" &&
-            "bg-neutral-100 border-neutral-300 text-neutral-700",
+            "bg-neutral-50 border-neutral-200 text-neutral-700",
           font === "Inter" && "font-inter",
           font === "Poppins" && "font-poppins"
         )}
@@ -62,13 +63,15 @@ export default function Tweet() {
               <h4 className="flex items-center gap-1.5">
                 {name}{" "}
                 {verified && (
-                  <BadgeCheckIcon className="text-[#1DA1F2]" size={16} />
+                  <BadgeCheckIcon className="text-[#1DA1F2]" size={17} />
                 )}
               </h4>
               <p
                 className={cn(
                   "text-sm text-muted-foreground -mt-0.5",
-                  apperance == "Light" && "text-neutral-500"
+                  apperance == "Light" && "text-neutral-500",
+                  apperance == "Dim" && "text-neutral-400",
+                  apperance == "Dark" && "text-neutral-400"
                 )}
               >
                 @{username}
@@ -82,7 +85,9 @@ export default function Tweet() {
             <div
               className={cn(
                 "flex items-center gap-[0.42rem] sm:text-sm text-[13.5px] flex-wrap text-muted-foreground",
-                apperance == "Light" && "text-neutral-500"
+                apperance == "Light" && "text-neutral-500",
+                apperance == "Dim" && "text-neutral-300",
+                apperance == "Dark" && "text-neutral-400"
               )}
             >
               <div>{formattedDateTime?.time ?? "4:55PM"}</div> ·
@@ -92,19 +97,22 @@ export default function Tweet() {
             <div
               className={cn(
                 "border-t flex items-center gap-5 pt-3 px-1 text-muted-foreground text-sm",
-                apperance == "Dim" && "border-neutral-700",
-                apperance == "Light" && "border-neutral-300 text-neutral-500"
+                apperance == "Dark" && "border-neutral-700 text-neutral-400",
+                apperance == "Dim" && "border-neutral-700 text-neutral-300",
+                apperance == "Light" && "border-neutral-200 text-neutral-500"
               )}
             >
               <div className="flex items-center gap-1.5">
                 <MessageCircleIcon
-                  size={14}
+                  size={16}
                   className="fill-current text-[#1DA1F2]"
                 />
                 <span
                   className={cn(
                     "text-primary",
-                    apperance == "Light" && "text-neutral-600"
+                    apperance == "Light" && "text-neutral-600",
+                    apperance == "Dim" && "text-neutral-200",
+                    apperance == "Dark" && "text-neutral-100"
                   )}
                 >
                   {formatNumber(comments)}
@@ -112,11 +120,13 @@ export default function Tweet() {
                 <span className="max-[410px]:hidden">Comments</span>
               </div>
               <div className="items-center gap-1.5 flex">
-                <Repeat2Icon size={16} className="text-green-500" />
+                <Repeat2Icon size={18} className="text-green-500" />
                 <span
                   className={cn(
                     "text-primary ",
-                    apperance == "Light" && "text-neutral-600"
+                    apperance == "Light" && "text-neutral-600",
+                    apperance == "Dim" && "text-neutral-200",
+                    apperance == "Dark" && "text-neutral-100"
                   )}
                 >
                   {formatNumber(retweets)}
@@ -124,11 +134,13 @@ export default function Tweet() {
                 <span className="max-[410px]:hidden">Retweets</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <HeartIcon size={14} className="fill-current text-red-600" />
+                <HeartIcon size={16} className="fill-current text-red-600" />
                 <span
                   className={cn(
                     "text-primary",
-                    apperance == "Light" && "text-neutral-600"
+                    apperance == "Light" && "text-neutral-600",
+                    apperance == "Dim" && "text-neutral-200",
+                    apperance == "Dark" && "text-neutral-100"
                   )}
                 >
                   {formatNumber(likes)}
