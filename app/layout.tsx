@@ -3,7 +3,7 @@ import { Space_Grotesk } from "next/font/google";
 import Nav from "@/components/nav";
 import "./globals.css";
 
-const poppins = Space_Grotesk({
+const fontMain = Space_Grotesk({
   variable: "--font-main",
   subsets: ["latin"],
   weight: "400",
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${poppins.className} font-sans antialiased`}>
+      <body className={`${fontMain.className} font-sans antialiased`}>
         <Nav />
         <main>{children}</main>
       </body>

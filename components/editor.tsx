@@ -17,7 +17,12 @@ import DateTimeInput from "./date-time-input";
 
 import { AtSignIcon } from "lucide-react";
 
-import { tweet_devices, tweet_themes, useTweetStore } from "@/store/tweet";
+import {
+  tweet_devices,
+  tweet_font,
+  tweet_themes,
+  useTweetStore,
+} from "@/store/tweet";
 
 export default function Editor() {
   return (
@@ -69,10 +74,30 @@ function Content() {
 }
 
 function Profile() {
-  // TODO: avatar
   const { update, verified, name, username } = useTweetStore();
   return (
     <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="avatar">Avatar</Label>
+
+        <Input
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              update({
+                avatar: {
+                  url: URL.createObjectURL(file),
+                  value: e.target.value,
+                },
+              });
+            }
+          }}
+          id="avatar"
+          className="p-0 file:px-2 file:h-full file:me-3 file:border-0 file:border-e file:border-border"
+          type="file"
+          accept="image/*"
+        />
+      </div>
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="fullname">Display Name</Label>
         <Input
@@ -131,7 +156,7 @@ function Metrics() {
 }
 
 function Appearance() {
-  const { apperance, update, device } = useTweetStore();
+  const { apperance, update, device, font } = useTweetStore();
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-1.5">
@@ -167,6 +192,26 @@ function Appearance() {
           </SelectTrigger>
           <SelectContent>
             {tweet_devices.map((it) => (
+              <SelectItem key={it} value={it}>
+                {it}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="font">Font</Label>
+        <Select
+          value={font}
+          onValueChange={(val) =>
+            update({ font: val as (typeof tweet_font)[number] })
+          }
+        >
+          <SelectTrigger>
+            <SelectValue id="font" placeholder="Theme" />
+          </SelectTrigger>
+          <SelectContent>
+            {tweet_font.map((it) => (
               <SelectItem key={it} value={it}>
                 {it}
               </SelectItem>
