@@ -36,6 +36,8 @@ export default function Tweet() {
     [date]
   );
 
+  // todo hastag highlight
+
   return (
     <div className="flex-1 flex flex-col gap-6 pt-1.5">
       <h3 className="px-0.5">Preview Tweet</h3>
@@ -74,13 +76,13 @@ export default function Tweet() {
               </p>
             </div>
           </div>
-          <div className="text-[14.3px] whitespace-pre-wrap my-1.5 break-words">
+          <div className="text-[14.3px] flex gap-1 flex-wrap whitespace-pre-wrap my-1.5 break-words">
             {text}
           </div>
           <div className="flex flex-col gap-2 mt-1">
             <div
               className={cn(
-                "flex items-center gap-[0.42rem] text-sm text-muted-foreground",
+                "flex items-center gap-[0.42rem] sm:text-sm text-[13.5px] flex-wrap text-muted-foreground",
                 apperance == "Light" && "text-neutral-500"
               )}
             >
@@ -90,7 +92,7 @@ export default function Tweet() {
             </div>
             <div
               className={cn(
-                "border-t flex items-center gap-5 pt-3 px-1 text-muted-foreground text-xs lg:text-base",
+                "border-t flex items-center gap-5 pt-3 px-1 text-muted-foreground text-sm",
                 apperance == "Dim" && "border-neutral-700",
                 apperance == "Light" && "border-neutral-300 text-neutral-500"
               )}
