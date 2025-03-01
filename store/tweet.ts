@@ -18,6 +18,7 @@ type TweetState = {
     device: typeof tweet_devices[number];
     avatar: string | undefined;
     font: typeof tweet_font[number];
+    images: string[]; // todo
 };
 
 type TweetUpdateAction = {
@@ -26,17 +27,20 @@ type TweetUpdateAction = {
 
 export const useTweetStore = create<TweetState & TweetUpdateAction>((set) => ({
     apperance: "Dark",
-    comments: 10,
+    comments: 21,
     date: null,
-    likes: 69,
-    name: "John Doe",
-    username: "johndoe69",
-    retweets: 5,
-    text:
-        "Do you know about ReturnType in TypeScript? What about Awaited or Parameters? ",
-    verified: false,
-    device: "Android",
+    likes: 690,
+    name: "Peter Griffin",
+    username: "RealPeterG",
+    retweets: 78,
+    text: `Doctor said I need to eat healthier.  
+So I started adding lettuce to my burgers.  
+
+Now I’m basically a nutritionist. 🥗`,
+    verified: true,
+    device: "iPhone",
     font: "Grotesk",
-    avatar: undefined,
+    avatar: "/peter.jpg",
+    images: [],
     update: (data) => set((prev) => ({ ...prev, ...data })),
 }));

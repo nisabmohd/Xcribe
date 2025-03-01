@@ -15,6 +15,7 @@ import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { useMemo } from "react";
 
+// TODO: Images to tweet
 export default function Tweet() {
   const {
     text,
@@ -61,7 +62,7 @@ export default function Tweet() {
               <h4 className="flex items-center gap-1.5">
                 {name}{" "}
                 {verified && (
-                  <BadgeCheckIcon className="text-[#1DA1F2]" size={15} />
+                  <BadgeCheckIcon className="text-[#1DA1F2]" size={16} />
                 )}
               </h4>
               <p
@@ -84,8 +85,8 @@ export default function Tweet() {
                 apperance == "Light" && "text-neutral-500"
               )}
             >
-              <div>{formattedDateTime?.time}</div> ·
-              <div>{formattedDateTime?.date}</div> ·
+              <div>{formattedDateTime?.time ?? "4:55PM"}</div> ·
+              <div>{formattedDateTime?.date ?? "Feb 22, 2008"}</div> ·
               <div className="text-[#1DA1F2]">Twitter for {device}</div>
             </div>
             <div

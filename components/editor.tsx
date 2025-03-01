@@ -26,6 +26,7 @@ import {
 
 // TODO: AI to generate tweet
 // TODO: Threads Maker
+// TODO: Add images
 
 export default function Editor() {
   return (
