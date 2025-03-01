@@ -36,8 +36,6 @@ export default function Tweet() {
     [date]
   );
 
-  // todo hastag highlight
-
   return (
     <div className="flex-1 flex flex-col gap-6 pt-1.5">
       <h3 className="px-0.5">Preview Tweet</h3>
