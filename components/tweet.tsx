@@ -110,7 +110,7 @@ export default function Tweet() {
                 >
                   {formatNumber(comments)}
                 </span>{" "}
-                <span className="max-[440px]:hidden">Comments</span>
+                <span className="max-[410px]:hidden">Comments</span>
               </div>
               <div className="items-center gap-1.5 flex">
                 <Repeat2Icon size={16} className="text-green-500" />
@@ -122,7 +122,7 @@ export default function Tweet() {
                 >
                   {formatNumber(retweets)}
                 </span>{" "}
-                <span className="max-[440px]:hidden">Retweets</span>
+                <span className="max-[410px]:hidden">Retweets</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <HeartIcon size={14} className="fill-current text-red-600" />
@@ -134,7 +134,7 @@ export default function Tweet() {
                 >
                   {formatNumber(likes)}
                 </span>{" "}
-                <span className="max-[440px]:hidden">Likes</span>
+                <span className="max-[410px]:hidden">Likes</span>
               </div>
             </div>
           </div>

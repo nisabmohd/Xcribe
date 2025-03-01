@@ -24,11 +24,14 @@ import {
   useTweetStore,
 } from "@/store/tweet";
 
+// TODO: AI to generate tweet
+// TODO: Threads Maker
+
 export default function Editor() {
   return (
     <div className="flex-1 flex flex-col gap-5">
       <Tabs defaultValue="content" className="w-full">
-        <TabsList>
+        <TabsList className="max-w-full">
           <TabsTrigger value="content">Content</TabsTrigger>
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="metrics">Metrics</TabsTrigger>

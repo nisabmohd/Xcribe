@@ -24,6 +24,7 @@ type TweetUpdateAction = {
     update: (data: Partial<TweetState>) => void;
 };
 
+// TODO: persist
 export const useTweetStore = create<TweetState & TweetUpdateAction>((set) => ({
     apperance: "Dark",
     comments: 10,
