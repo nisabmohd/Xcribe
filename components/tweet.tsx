@@ -30,6 +30,8 @@ export default function Tweet() {
     date,
     apperance,
     font,
+    padding,
+    border,
   } = useTweetStore();
 
   const formattedDateTime = useMemo(
@@ -43,14 +45,20 @@ export default function Tweet() {
       <div
         id="tweet-ui"
         className={cn(
-          "w-full flex items-start gap-3 min-h-fit rounded-lg p-3.5 border overflow-x-auto",
-          apperance == "Dark" && "bg-black text-neutral-100 border-neutral-700",
-          apperance == "Dim" &&
-            "bg-[#15202B] border-neutral-700/70 text-neutral-200",
-          apperance == "Light" &&
-            "bg-neutral-50 border-neutral-200 text-neutral-700",
+          "w-full flex items-start gap-3 min-h-fit rounded-lg p-3.5 overflow-x-auto",
+          apperance == "Dark" && "bg-black text-neutral-100 ",
+          apperance == "Dim" && "bg-[#15202B] text-neutral-200",
+          apperance == "Light" && "bg-neutral-50  text-neutral-700",
           font === "Inter" && "font-inter",
-          font === "Poppins" && "font-poppins"
+          font === "Poppins" && "font-poppins",
+          padding == "4" && "p-3.5",
+          padding == "8" && "p-5",
+          padding == "16" && "p-8",
+          padding == "32" && "p-12",
+          border && "border",
+          border && apperance == "Dark" && "border-neutral-700",
+          border && apperance == "Light" && "border-neutral-200",
+          border && apperance == "Dim" && "border-neutral-700/70"
         )}
       >
         <div className="flex flex-col gap-3 w-full">

@@ -14,10 +14,10 @@ import {
 import { Switch } from "@/components/ui/switch";
 import NumberInput from "./number-input";
 import DateTimeInput from "./date-time-input";
-
 import { AtSignIcon } from "lucide-react";
 
 import {
+  padding_values,
   tweet_devices,
   tweet_font,
   tweet_themes,
@@ -157,9 +157,9 @@ function Metrics() {
 }
 
 function Appearance() {
-  const { apperance, update, device, font } = useTweetStore();
+  const { apperance, update, device, font, padding, border } = useTweetStore();
   return (
-    <div className="flex flex-col gap-5">
+    <div className="grid grid-cols-1 gap-5">
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="appearance">Appearance</Label>
         <Select
@@ -219,6 +219,39 @@ function Appearance() {
             ))}
           </SelectContent>
         </Select>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="padding">Padding</Label>
+        <Select
+          value={padding}
+          onValueChange={(val) =>
+            update({ padding: val as (typeof padding_values)[number] })
+          }
+        >
+          <SelectTrigger>
+            <SelectValue id="padding" placeholder="Theme" />
+          </SelectTrigger>
+          <SelectContent>
+            {padding_values.map((it) => (
+              <SelectItem key={it} value={it}>
+                {it}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex items-center gap-3 mt-2">
+        <Switch
+          id="border"
+          checked={border}
+          onCheckedChange={(val) => update({ border: val })}
+          aria-label="Toggle switch"
+        />
+        <Label htmlFor="border" className="text-sm font-medium">
+          Border outside
+        </Label>
       </div>
     </div>
   );

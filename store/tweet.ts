@@ -4,6 +4,7 @@ import { create } from "zustand";
 export const tweet_themes = ["Dark", "Light", "Dim"] as const;
 export const tweet_devices = ["iPhone", "Android", "Web", "Windows"] as const;
 export const tweet_font = ["Inter", "Poppins", "Grotesk"] as const;
+export const padding_values = ["4", "8", "16", "32"] as const;
 
 type TweetState = {
     text: string;
@@ -19,6 +20,8 @@ type TweetState = {
     avatar: string | undefined;
     font: typeof tweet_font[number];
     images: string[]; // todo
+    padding: typeof padding_values[number];
+    border: boolean;
 };
 
 type TweetUpdateAction = {
@@ -42,5 +45,7 @@ Now I’m basically a nutritionist. 🥗`,
     font: "Grotesk",
     avatar: "/peter.jpg",
     images: [],
+    padding: "4",
+    border: true,
     update: (data) => set((prev) => ({ ...prev, ...data })),
 }));
