@@ -73,6 +73,29 @@ function Content() {
         value={date}
         onDateChange={(val) => update({ date: val })}
       />
+
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="images">Photos</Label>
+
+        <Input
+          onChange={(e) => {
+            const files = e.target.files;
+            if (!files) return;
+            const filesArr = Array.from(files);
+            if (filesArr.length > 4) {
+              alert("Max 4 files");
+              return;
+            }
+            const urlsArr = filesArr.map((file) => URL.createObjectURL(file));
+            update({ images: urlsArr });
+          }}
+          id="images"
+          className="p-0 file:px-2 file:h-full file:me-3 file:border-0 file:border-e file:border-border"
+          type="file"
+          accept="image/*"
+          multiple
+        />
+      </div>
     </div>
   );
 }

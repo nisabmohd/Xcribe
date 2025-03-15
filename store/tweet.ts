@@ -45,7 +45,7 @@ Now I’m basically a nutritionist. 🥗`,
     font: "Grotesk",
     avatar: "/peter.jpg",
     images: [],
-    padding: "4",
+    padding: "8",
     border: true,
     update: (data) => set((prev) => ({ ...prev, ...data })),
 }));

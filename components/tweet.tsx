@@ -14,8 +14,8 @@ import { cn, DateTimeInput, formatDateTime, formatNumber } from "@/lib/utils";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { useMemo } from "react";
+import Image from "next/image";
 
-// TODO: Images to tweet
 export default function Tweet() {
   const {
     text,
@@ -32,6 +32,7 @@ export default function Tweet() {
     font,
     padding,
     border,
+    images,
   } = useTweetStore();
 
   const formattedDateTime = useMemo(
@@ -89,6 +90,7 @@ export default function Tweet() {
           <div className="text-[14.3px] flex gap-1 flex-wrap whitespace-pre-wrap my-1.5 break-words">
             {text}
           </div>
+          <TweetImages images={images} apperance={apperance} />
           <div className="flex flex-col gap-2 mt-1">
             <div
               className={cn(
@@ -160,6 +162,106 @@ export default function Tweet() {
         </div>
       </div>
       <TweetActions />
+    </div>
+  );
+}
+
+function TweetImages({
+  images,
+  apperance,
+}: {
+  images: string[];
+  apperance: string;
+}) {
+  if (!images.length) return null;
+
+  const imageClass = cn(
+    "border rounded-sm overflow-hidden",
+    apperance == "Dark" && "border-neutral-700",
+    apperance == "Light" && "border-neutral-200",
+    apperance == "Dim" && "border-neutral-700/70"
+  );
+
+  if (images.length === 1) {
+    return (
+      <div
+        className={`relative aspect-square w-full max-h-[500px] ${imageClass}`}
+      >
+        <Image
+          src={images[0]}
+          alt="Tweet image"
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
+    );
+  }
+
+  if (images.length === 2) {
+    return (
+      <div className="grid grid-cols-2 gap-2">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`relative aspect-[16/9] w-full ${imageClass}`}
+          >
+            <Image
+              src={image}
+              alt="Tweet image"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (images.length === 3) {
+    return (
+      <div className="grid grid-cols-2 gap-2">
+        <div
+          className={`relative col-span-2 aspect-[16/9] w-full ${imageClass}`}
+        >
+          <Image
+            src={images[0]}
+            alt="Tweet image"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+        {images.slice(1).map((image, index) => (
+          <div
+            key={index}
+            className={`relative aspect-square w-full ${imageClass}`}
+          >
+            <Image
+              src={image}
+              alt="Tweet image"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid grid-cols-2 gap-2">
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={`relative aspect-square w-full ${imageClass}`}
+        >
+          <Image
+            src={image}
+            alt="Tweet image"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+      ))}
     </div>
   );
 }
